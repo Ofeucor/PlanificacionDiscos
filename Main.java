@@ -1,42 +1,67 @@
-package Tocadisco;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
+
 
 public class Main {
+
+	public static final Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ArrayList<Integer> a = new ArrayList<Integer>();
-		
-		a.add(70);
-		a.add(80);
-		a.add(90);
-		/*a.add(90);
-		a.add(30);
-		a.add(60);*/
-		 /*String t = "AEEDABDECBABDBB"
-		  		+ "";
-		  for(int i = 3; i <= t.length();i+=3)
-			  System.out.println((i-2) +": " + t.charAt(i-3) + "\t" +
-					  (i-1) + ": " + t.charAt(i-2)+ "\t" +
-					  (i) + ": " + t.charAt(i-1)+ "\t" );
-		  for(int i = t.length()%3; i >=0 ;i--)
-			  System.out.print((t.length()-i) +": " + t.charAt(t.length()-i-1) + "\t");
-		  System.out.println();*/
-		System.out.println("FCFS");
-		//fCFS(a, 50);
-		System.out.println("S-CAM");
-		//s_CAM(a, 170, 200);
-		System.out.println("C-CAM");
-		c_CAM(a, 80, 100);
-		System.out.println("S-LOOK");
-		s_LOOK(a, 170);
-		System.out.println("C-LOOK");//SUELEN CONFUNDIRLO CON S-LOOK
-		c_LOOK(a, 170);
-		System.out.println("SSTF");
-		sstf(a, 170);
+		System.out.println("Introduce punto inicial:");
+		int origen = teclado.nextInt();
+		System.out.println("Introduce el tamaño:");
+		int tam = teclado.nextInt();
+		createArray(a);
+		menu(origen, a, tam);
 
+	}
+
+	public static void menu(int origen, ArrayList<Integer> a, int tam){
+
+		int opt;
+		do{
+			System.out.println("0. Salida\n1. FCFS\n2. S-CAM\n3. C-CAM\n4. S-LOOK\n5. C-LOOK\n5. SSTF\n");
+			switch(opt = teclado.nextInt()){
+				case 1:
+					System.out.println("FCFS");
+					fCFS(a, origen);
+					break;
+				case 2:
+					System.out.println("S-CAM");
+					s_CAM(a, origen, tam);
+					break;
+				case 3:
+					System.out.println("C-CAM");
+					c_CAM(a, origen, tam);
+					break;
+				case 4:
+					System.out.println("S-LOOK");
+					s_LOOK(a, origen);
+					break;
+				case 5:
+					System.out.println("C-LOOK");//SUELEN CONFUNDIRLO CON S-LOOK
+					c_LOOK(a, 170);
+					break;
+				case 6:
+					System.out.println("SSTF");
+					sstf(a, 170);
+					break;
+				case 0:
+					break;
+			}
+		}while(opt != 0);
+
+	}
+
+	public static void createArray(ArrayList<Integer> a){
+		int n;
+		do{
+			System.out.print("Pulsa '-1' para terminar o introduce la siguiente parada:");
+			a.add((n = teclado.nextInt()));
+		}while(n != -1);
 	}
 	
 	public static void fCFS(ArrayList<Integer> a, int origen) {
