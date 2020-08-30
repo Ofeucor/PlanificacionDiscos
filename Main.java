@@ -66,7 +66,15 @@ public class Main {
 	
 	public static void fCFS(ArrayList<Integer> a, int origen) {
 		int d = 0;
+		ArrayList<Integer> copia = new ArrayList<Integer>();
+		for(int i : a)
+			copia.add(i);
+		Collections.sort(copia);
 		while(!a.isEmpty()) {
+			int n = copia.indexOf(a.get(0));
+			for(int j = 0; j < n; j++)
+				System.out.print("\t");
+			System.out.println(a.get(0));
 			d += Math.abs((origen-a.get(0)));
 			origen = a.get(0);
 			a.remove(0);
